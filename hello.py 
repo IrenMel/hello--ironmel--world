@@ -1,2 +1,47 @@
-msg = "Hello World kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-print(msg)
+class Character:
+    def __init__(self, name, power, energy=100, hands=2):
+        self.name = name
+        self.power = power
+        self.energy = energy
+        self.backpack = [] #пустой список для конкретного экземпляра
+        self.hands = hands
+
+    def eat(self,food):
+        if self.energy < 100:
+            self.energy += food
+        else:
+            print('Not hungry')
+    def do_exercise(self, hours):
+        if self.energy > 0:
+            self.energy -= hours * 2
+            self.power += hours * 2
+        else:
+            print('Too tired')
+    def change_alias(self, new_alias):
+        print(self)
+        self.alias = new_alias
+                                  #в методы можно передать другие объекты и сними взаимодействовать
+    def beat_up(self, foe):
+        if not isinstance(foe, Character):      #является ли объект экземпляром класса
+            return
+        if foe.power < self.power:
+            foe.status = 'defeated'
+            self.status = 'winner'
+        else:
+            print('Retreat!')
+            foe.status = 'none'
+            self.status = 'none'
+
+
+peter = Character('Peter Parker', 80)
+bruce = Character('Bruce Wayne', 85)
+bruce.beat_up(peter)
+print(bruce.status)
+print(peter.status)
+    
+peter.beat_up(bruce)
+print(peter.status)
+print(bruce.status)
+    
+    
+
